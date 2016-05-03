@@ -19,7 +19,7 @@ def main():
     screen = pygame.display.set_mode(windowSize)
 
     # set the title of the window
-    pygame.display.set_caption("My First Pygame Game!!!")
+    pygame.display.set_caption("Event Processing")
 
     # create some color objects
     FUCHSIA = pygame.Color(255, 0, 255)
@@ -44,50 +44,50 @@ def main():
             #######Key Events#######
             if event.type == KEYDOWN:
                 if event.key == K_t: # t key pressed
-                    drawTriangles(100, 100, 100, screen)
+                    draw_triangles(100, 100, 100, screen)
                 elif event.key == K_l: # l key pressed
-                    drawLines(45, 200, 50, screen)
+                    draw_lines(45, 200, 50, screen)
                 elif event.key == K_c: # c key pressed
-                    drawCircles(60, 400, 50, screen)
+                    draw_circles(60, 400, 50, screen)
                 elif event.key == K_e: # e key pressed
-                    drawEllipses([60, 500, 100, 50], screen)
+                    draw_ellipses([60, 500, 100, 50], screen)
                 elif event.key == K_x: # x key pressed
                     font = pygame.font.SysFont('Calibri', 25, True, False)
-                    text = font.render("Pygame is fun!!",True ,randomColor())
+                    text = font.render("Pygame is fun!!",True ,random_color())
                     screen.blit(text, [260, 250])
 
         pygame.display.update() # update the display when all events have been processed
         fpsClock.tick(FPS)
 
-def randomColor():
+def random_color():
     return pygame.Color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
-def drawTriangles(x, y, length, screen):
+def draw_triangles(x, y, length, screen):
     radius = (math.sqrt(3) / 3) * length
 
     for i in range(1, 6):
         width = 0 if i % 2 != 0 else 3
         points = [ (x, y - radius), (x + radius, y + radius), (x - radius, y + radius)]
-        pygame.draw.polygon(screen, randomColor(), points, width)
+        pygame.draw.polygon(screen, random_color(), points, width)
         x += 125
 
-def drawLines(x, y, length, screen):
+def draw_lines(x, y, length, screen):
     width = 2
     for i in range(1, 6):
-        pygame.draw.line(screen, randomColor(), (x, y), (x+100, y), width)
+        pygame.draw.line(screen, random_color(), (x, y), (x+100, y), width)
         y += 25
         width += 2
 
-def drawCircles(x, y, length, screen):
+def draw_circles(x, y, length, screen):
     for i in range(1, 6):
         width = 0 if i % 2 == 0 else 5
-        pygame.draw.circle(screen, randomColor(), (x, y), length, width)
+        pygame.draw.circle(screen, random_color(), (x, y), length, width)
         x += 100
 
-def drawEllipses(bounding_rectangle, screen):
+def draw_ellipses(bounding_rectangle, screen):
     for i in range(1, 6):
         width = 0 if i % 2 != 0 else 5
-        pygame.draw.ellipse(screen, randomColor(), bounding_rectangle, width)
+        pygame.draw.ellipse(screen, random_color(), bounding_rectangle, width)
         bounding_rectangle = [bounding_rectangle[0] + 100, bounding_rectangle[1], 100, 50]
 
 if __name__ == "__main__":

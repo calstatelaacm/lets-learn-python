@@ -21,24 +21,24 @@ def main():
     # no transparency
     ship1 = pygame.image.load("img/blue_ship.png").convert()
     screen.blit(ship1, (40, 100))
-    drawText(screen, 'No transparency', 1, 50)
+    draw_text(screen, 'No transparency', 1, 50)
 
     # transparent background with convert_alpha()
     ship2 = pygame.image.load("img/blue_ship.png").convert_alpha()
     screen.blit(ship2, (240, 100))
-    drawText(screen, 'convert_alpha()', 200, 50)
+    draw_text(screen, 'convert_alpha()', 200, 50)
 
     # transparent background with set_keycolor(BLACK)
     ship3 = pygame.image.load("img/blue_ship.png").convert()
     ship3.set_colorkey(BLACK)
     screen.blit(ship3, (440, 100))
-    drawText(screen, 'set_colorkey()', 410, 50)
+    draw_text(screen, 'set_colorkey()', 410, 50)
 
     # transparent image
     ship4 = pygame.image.load("img/blue_ship.png").convert()
     ship4.set_alpha(50)
     screen.blit(ship4, (640, 100))
-    drawText(screen, 'set_alpha(50)', 630, 50)
+    draw_text(screen, 'set_alpha(50)', 630, 50)
 
     # load sound fx
     laser_sound = pygame.mixer.Sound('audio/laser.ogg')
@@ -67,7 +67,7 @@ def main():
         pygame.display.update()
         fpsClock.tick(FPS)
 
-def drawText(screen, text, x, y):
+def draw_text(screen, text, x, y):
     WHITE = pygame.Color(255, 255, 255)
 
     font = pygame.font.SysFont('Calibri', 25, True, False)

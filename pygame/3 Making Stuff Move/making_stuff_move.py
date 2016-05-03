@@ -17,15 +17,15 @@ def main():
     RED = pygame.Color(255, 0, 0)
 
     screen.fill(WHITE)
-    colorsForHouse = {'house': GOLD, 'roof': RED}
+    colors_for_house = {'house': GOLD, 'roof': RED}
 
-    house = House(200, 200, 100, colorsForHouse)
+    house = House(200, 200, 100, colors_for_house)
     house.draw(screen)
 
-    moveLeft = False;
-    moveRight = False;
-    moveDown = False;
-    moveUp = False;
+    move_up = False;
+    move_down = False;
+    move_left = False;
+    move_right = False;
 
     while True:  # <--- main game loop
         for event in pygame.event.get():
@@ -35,31 +35,31 @@ def main():
 
             if event.type == KEYDOWN:
                 if event.key == K_UP:
-                    moveUp = True
+                    move_up = True
                 if event.key == K_DOWN:
-                    moveDown = True
+                    move_down = True
                 if event.key == K_LEFT:
-                    moveLeft = True
+                    move_left = True
                 if event.key == K_RIGHT:
-                    moveRight = True
+                    move_right = True
 
             if event.type == KEYUP:
                 if event.key == K_UP:
-                    moveUp = False
+                    move_up = False
                 if event.key == K_DOWN:
-                    moveDown = False
+                    move_down = False
                 if event.key == K_LEFT:
-                    moveLeft = False
+                    move_left = False
                 if event.key == K_RIGHT:
-                    moveRight = False
+                    move_right = False
 
-        if moveUp:
+        if move_up:
             house.changeY(-10)
-        if moveDown:
+        if move_down:
             house.changeY(10)
-        if moveLeft:
+        if move_left:
             house.changeX(-10)
-        if moveRight:
+        if move_right:
             house.changeX(10)
 
         # redraw the background and house each frame
