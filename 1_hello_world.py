@@ -16,7 +16,7 @@ def main():
     screen = pygame.display.set_mode(windowSize)
 
     # set the title of the window
-    pygame.display.set_caption("My First Pygame Game!!!")
+    pygame.display.set_caption("Classic Hello World Example")
 
     # create some color objects
     BLACK = pygame.Color(0, 0 , 0)
