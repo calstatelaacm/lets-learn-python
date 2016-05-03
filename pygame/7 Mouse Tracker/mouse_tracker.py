@@ -44,7 +44,6 @@ def main():
 
             if event.type == MOUSEMOTION:
                 mouse_coords = pygame.mouse.get_pos()
-                print(mouse_coords)
 
         update_mouse_coords(screen, mouse_coords)
         update_click_data(screen, movement, button_clicked)
