@@ -25,7 +25,7 @@ def main():
     dogY = 0
 
     # add dog.jpg image to screen
-    dog = pygame.image.load("dog.png").convert_alpha() # don't forget .convert()
+    dog = pygame.image.load("dog.png").convert_alpha() # convert_alpha sets the background color to transparent
     screen.blit(dog, (dogX, dogY))
 
     while True:  # <--- main game loop
