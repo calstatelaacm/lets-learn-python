@@ -6,7 +6,7 @@ def main():
 
     pygame.init()
     FPS = 60
-    fps_clock = pygame.time.Clock()
+    fpsClock = pygame.time.Clock()
 
     window_size = (0, 0)
     screen = pygame.display.set_mode(window_size)
@@ -65,7 +65,7 @@ def main():
         screen.fill(WHITE)
         screen.blit(dog, (dogX, dogY))
         pygame.display.update()  # needed to update the display when all events have been processed
-        fps_clock.tick(FPS)
+        fpsClock.tick(FPS)
 
 if __name__ == "__main__":
     main()
