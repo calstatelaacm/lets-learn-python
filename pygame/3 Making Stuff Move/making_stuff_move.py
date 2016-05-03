@@ -3,31 +3,29 @@ import sys
 from pygame.locals import *
 
 def main():
-
     pygame.init()
-    FPS = 60
+    FPS = 30
     fpsClock = pygame.time.Clock()
 
     window_size = (0, 0)
     screen = pygame.display.set_mode(window_size)
 
-    pygame.display.set_caption("Make Stuff Move")
+    pygame.display.set_caption("Making Stuff Move")
 
     WHITE = pygame.Color(255, 255, 255)
+    GOLD = pygame.Color(255, 215, 0)
+    RED = pygame.Color(255, 0, 0)
+
     screen.fill(WHITE)
+    colorsForHouse = {'house': GOLD, 'roof': RED}
+
+    house = House(200, 200, 100, colorsForHouse)
+    house.draw(screen)
 
     moveLeft = False;
     moveRight = False;
     moveDown = False;
     moveUp = False;
-
-    dogX = 0
-    dogY = 0
-
-    # add dog.jpg image to screen
-    # dog = pygame.image.load("dog.png").convert_alpha() # convert_alpha sets the background color to transparent
-    dog = pygame.image.load("dog.png").convert_alpha()
-    screen.blit(dog, (dogX, dogY))
 
     while True:  # <--- main game loop
         for event in pygame.event.get():
@@ -44,6 +42,7 @@ def main():
                     moveLeft = True
                 if event.key == K_RIGHT:
                     moveRight = True
+
             if event.type == KEYUP:
                 if event.key == K_UP:
                     moveUp = False
@@ -55,18 +54,42 @@ def main():
                     moveRight = False
 
         if moveUp:
-            dogY -= 10
+            house.changeY(-10)
         if moveDown:
-            dogY += 10
+            house.changeY(10)
         if moveLeft:
-            dogX -= 10
+            house.changeX(-10)
         if moveRight:
-            dogX += 10
+            house.changeX(10)
 
+        # redraw the background and house each frame
         screen.fill(WHITE)
-        screen.blit(dog, (dogX, dogY))
-        pygame.display.update()  # needed to update the display when all events have been processed
+        house.draw(screen)
+        pygame.display.update()
         fpsClock.tick(FPS)
+
+class House:
+
+    def __init__(self, x, y, size, colors):
+        self.x = x
+        self.y = y
+        self.size = size
+        self.colors = colors
+
+    def draw(self, screen):
+        pygame.draw.rect(screen, self.colors['house'], [self.x, self.y, self.size, self.size] )
+        self.__draw_roof(screen)
+
+    def __draw_roof(self, screen):
+        pointlist = [ (self.x - 20, self.y), (self.x + self.size + 20, self.y), (self.x + 100, self.y - 100)]
+
+        pygame.draw.polygon(screen, self.colors['roof'], pointlist)
+
+    def changeX(self, inc):
+        self.x += inc;
+
+    def changeY(self, inc):
+        self.y += inc;
 
 if __name__ == "__main__":
     main()
